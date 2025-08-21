@@ -11,7 +11,9 @@ const PORT = process.env.PORT || 3000;
 // Middlewares
 app.use(cors());
 app.use(express.json());
-
+app.get('/', (req, res) => {
+  res.send('✅ School Management API is running!');
+});
 // Routes
 app.use('/api', schoolRoutes);
 // Global Error Handler (must be last)
