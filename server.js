@@ -2,7 +2,7 @@ require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
 const schoolRoutes = require('./routes/schoolRoutes');
-const { db } = require('./config/db');
+const db = require('./config/db'); // FIXED
 
 const app = express();
 const PORT = process.env.PORT || 3000;
