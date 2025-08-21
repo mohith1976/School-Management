@@ -1,5 +1,6 @@
 const mysql = require('mysql2');
 const dotenv = require('dotenv');
+const fs = require('fs');
 
 // Load different env based on NODE_ENV
 const envFile = process.env.NODE_ENV === 'production' ? '.env.production' : '.env.local';
@@ -11,7 +12,13 @@ const pool = mysql.createPool({
   password: process.env.DB_PASSWORD,
   database: process.env.DB_NAME,
   port: process.env.DB_PORT || 3306,
-  connectionLimit: 10
+  waitForConnections: true,
+  connectionLimit: 10,
+  ssl: process.env.NODE_ENV === 'production' ? {
+    rejectUnauthorized: true
+    // If TiDB provides a CA certificate, you can add:
+    // ca: fs.readFileSync('./tidb_server_ca.pem')
+  } : undefined
 });
 
 pool.getConnection((err, connection) => {
