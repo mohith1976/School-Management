@@ -2,6 +2,7 @@ require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
 const schoolRoutes = require('./routes/schoolRoutes');
+const errorHandler = require('./middlewares/errorHandler');
 const db = require('./config/db'); 
 
 const app = express();
@@ -13,6 +14,9 @@ app.use(express.json());
 
 // Routes
 app.use('/api', schoolRoutes);
+// Global Error Handler (must be last)
+app.use(errorHandler);
+
 
 // Test DB Connection
 db.getConnection((err, connection) => {
