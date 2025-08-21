@@ -1,18 +1,30 @@
+require('dotenv').config();
 const express = require('express');
-const dotenv = require('dotenv');
-const db = require('./config/db');
-
-dotenv.config();
+const cors = require('cors');
+const schoolRoutes = require('./routes/schoolRoutes');
+const { db } = require('./config/db');
 
 const app = express();
+const PORT = process.env.PORT || 3000;
+
+// Middlewares
+app.use(cors());
 app.use(express.json());
 
-// Root endpoint
-app.get('/', (req, res) => {
-    res.send('API is running...');
+// Routes
+app.use('/api', schoolRoutes);
+
+// Test DB Connection
+db.getConnection((err, connection) => {
+    if (err) {
+        console.error('Database connection failed:', err);
+    } else {
+        console.log('Database connected successfully!');
+        connection.release();
+    }
 });
 
-const PORT = process.env.PORT || 3000;
+// Start Server
 app.listen(PORT, () => {
-    console.log(`🚀 Server running on port ${PORT}`);
+    console.log(`Server running at http://localhost:${PORT}`);
 });
