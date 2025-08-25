@@ -29,6 +29,14 @@ db.getConnection((err, connection) => {
         connection.release();
     }
 });
+// Health check endpoint
+app.get("/health", (req, res) => {
+  res.json({
+    status: "ok",
+    uptime: process.uptime(),
+    timestamp: Date.now()
+  });
+});
 
 // Start Server
 app.listen(PORT, () => {
