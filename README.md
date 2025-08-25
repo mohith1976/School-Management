@@ -23,8 +23,8 @@
 
 The School Management API provides a robust backend solution for managing school data with geographical proximity sorting. Users can add schools to the database and retrieve them sorted by distance from their current location using the Haversine formula for accurate distance calculations.
 
-**Live API:** [Add your deployed URL here]  
-**Postman Collection:** [Add link to exported collection here]
+**Live API:**  https://school-management-cic0.onrender.com  
+**Postman Collection:**  https://api.postman.com/collections/42486868-bcbb526e-8e0d-4144-aac7-b338351d0921?access_key=PMAT-01K36TADJBQTM7YB2GDXQP3M31
 
 ## ✨ Features
 
@@ -242,3 +242,4 @@ curl "http://localhost:3000/api/listSchools?latitude=17.4400&longitude=78.4900"
 ---
 
 ⭐ Star this repository if you find it helpful!
+
